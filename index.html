@@ -18,7 +18,6 @@
       overflow-x: hidden;
     }
 
-    /* تأثير النجوم */
     .stars {
       position: fixed;
       width: 100%;
@@ -54,44 +53,76 @@
 
     header {
       background-color: rgba(0, 17, 68, 0.9);
-      padding: 20px;
+      padding: 15px;
       text-align: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       border-bottom: 2px solid #00BFFF;
     }
 
     header h1 {
       color: #00BFFF;
       margin: 0;
-      font-size: 3rem;
+      font-size: 2rem;
     }
 
-    header p {
-      margin: 10px 0 0;
-      color: #FFFFFF;
-      font-size: 1.2rem;
+    .menu {
+      display: none;
+      flex-direction: column;
+      background: rgba(0, 17, 68, 0.9);
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      border-radius: 10px;
     }
 
-    nav {
-      background-color: rgba(0, 0, 68, 0.9);
-      padding: 10px 0;
-      text-align: center;
-    }
-
-    nav a {
+    .menu a {
       color: #00BFFF;
       text-decoration: none;
-      margin: 0 15px;
-      font-size: 1.1rem;
+      padding: 10px;
+      text-align: center;
+      display: block;
     }
 
-    nav a:hover {
-      text-decoration: underline;
+    .menu a:hover {
+      background: #00BFFF;
+      color: white;
+    }
+
+    .menu-btn {
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      color: #00BFFF;
+      cursor: pointer;
+    }
+
+    @media (min-width: 768px) {
+      .menu-btn {
+        display: none;
+      }
+
+      nav {
+        display: flex;
+      }
+
+      .menu {
+        display: flex !important;
+        flex-direction: row;
+        position: static;
+        background: none;
+      }
+
+      .menu a {
+        margin: 0 15px;
+        padding: 0;
+      }
     }
 
     .hero {
       text-align: center;
       padding: 50px 20px;
-      background-color: #001144;
     }
 
     .hero h2 {
@@ -128,28 +159,10 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     }
 
-    .developer img {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      margin-bottom: 10px;
-    }
-
     footer {
       background-color: rgba(0, 0, 68, 0.9);
       padding: 10px;
       text-align: center;
-      color: white;
-      font-size: 0.9rem;
-    }
-
-    footer a {
-      color: #00BFFF;
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
     }
   </style>
 </head>
@@ -164,59 +177,65 @@
 
   <header>
     <h1>Dream Bot</h1>
-    <p>مرحبًا بك في تجربة فريدة لإدارة الخوادم!</p>
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+    <nav class="menu">
+      <a href="#">الرئيسية</a>
+      <a href="#features">المميزات</a>
+      <a href="#developers">المنشئون</a>
+      <a href="#contact">تواصل معنا</a>
+    </nav>
   </header>
-  <nav>
-    <a href="#">الرئيسية</a>
-    <a href="#features">المميزات</a>
-    <a href="#developers">المنشئون</a>
-    <a href="#contact">تواصل معنا</a>
-  </nav>
+
   <div class="hero">
     <h2>ارتقِ بإدارة خادمك مع Dream Bot</h2>
     <p>ميزات مذهلة وخدمات مميزة تجعل إدارة الخادم أسهل من أي وقت مضى.</p>
   </div>
+
   <div class="container" id="developers">
     <h2 style="text-align: center; color: #00BFFF;">المنشئون</h2>
     <div class="developer-box" id="developer-list">
       <!-- سيتم ملء البيانات من Discord API -->
     </div>
   </div>
+
   <footer>
-    <p>© 2024 Dream Bot | جميع الحقوق محفوظة. <a href="https://example.com">تعرف علينا</a></p>
+    <p>© 2024 Dream Bot | جميع الحقوق محفوظة.</p>
   </footer>
 
   <script>
-    const developerIds = ["745205211697774665", "829263795364036608"]; // ضع معرفات Discord هنا
-    const token = "MTIyNTk1MjUyNDU3MDMzMzI5NQ.G3aTaJ.7eI0PFIh5bEI4X5bvv9SlhDUjrcBCwE28sIz7Q"; // ضع توكن البوت هنا
+    const developerIds = ["745205211697774665", "829263795364036608"];
+    const token = "MTIyNTk1MjUyNDU3MDMzMzI5NQ.G3aTaJ.7eI0PFIh5bEI4X5bvv9SlhDUjrcBCwE28sIz7Q";
 
     async function fetchDeveloperData(userId) {
-      const response = await fetch(`https://discord.com/api/v10/users/${userId}`, {
-        headers: {
-          Authorization: `Bot ${token}`
-        }
-      });
-      if (!response.ok) {
-        console.error(`Failed to fetch data for user ID: ${userId}`);
+      try {
+        const response = await fetch(`https://discord.com/api/v10/users/${userId}`, {
+          headers: { Authorization: `Bot ${token}` }
+        });
+        return response.ok ? response.json() : null;
+      } catch (err) {
+        console.error(`Error fetching user ${userId}:`, err);
         return null;
       }
-      return response.json();
     }
 
     async function loadDevelopers() {
-      const developerList = document.getElementById("developer-list");
+      const container = document.getElementById("developer-list");
       for (const id of developerIds) {
-        const data = await fetchDeveloperData(id);
-        if (data) {
-          const devBox = document.createElement("div");
-          devBox.className = "developer";
-          devBox.innerHTML = `
-            <img src="https://cdn.discordapp.com/avatars/${data.id}/${data.avatar}.png" alt="${data.username}">
-            <h3>${data.username}</h3>
-          `;
-          developerList.appendChild(devBox);
+        const dev = await fetchDeveloperData(id);
+        if (dev) {
+          const div = document.createElement("div");
+          div.className = "developer";
+          div.innerHTML = `
+            <img src="https://cdn.discordapp.com/avatars/${dev.id}/${dev.avatar}.png" alt="${dev.username}">
+            <h3>${dev.username}</h3>`;
+          container.appendChild(div);
         }
       }
+    }
+
+    function toggleMenu() {
+      const menu = document.querySelector(".menu");
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
     }
 
     loadDevelopers();
