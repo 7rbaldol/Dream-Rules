@@ -13,151 +13,92 @@
     body {
       margin: 0;
       font-family: 'Arial', sans-serif;
-      background-color: #000033;
       color: white;
       overflow-x: hidden;
     }
 
-    /* تأثير النجوم */
+    /* تأثير الشهب */
     .stars {
       position: fixed;
       width: 100%;
       height: 100%;
-      background: #000033;
+      background: transparent;
       overflow: hidden;
       z-index: -1;
     }
 
     .stars span {
       position: absolute;
-      width: 2px;
-      height: 2px;
+      width: 3px;
+      height: 3px;
       background: white;
+      border-radius: 50%;
+      box-shadow: 0 0 10px white;
       opacity: 0.8;
-      animation: moveStars 10s linear infinite;
-      animation-delay: calc(-1s * var(--i));
+      animation: shoot 3s linear infinite;
     }
 
-    @keyframes moveStars {
-      from {
-        transform: translateY(-100vh);
+    @keyframes shoot {
+      0% {
+        transform: translateX(100vw) translateY(calc(100vh * var(--y)));
+        opacity: 1;
       }
-      to {
-        transform: translateY(100vh);
+      80% {
+        opacity: 0.5;
+      }
+      100% {
+        transform: translateX(-10vw) translateY(calc(100vh * var(--y)));
+        opacity: 0;
       }
     }
 
     header {
-      background-color: rgba(0, 17, 68, 0.9);
-      padding: 15px;
-      text-align: center;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 2px solid #00BFFF;
-      position: relative;
-      z-index: 10;
+      padding: 15px 20px;
     }
 
-    header h1 {
-      color: #00BFFF;
-      margin: 0;
-      font-size: 3rem;
-    }
-
-    /* قائمة الهامبورجر */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 30px;
-      height: 25px;
-      cursor: pointer;
-    }
-
-    .hamburger div {
-      background-color: #00BFFF;
-      height: 5px;
-      width: 100%;
-      border-radius: 5px;
-    }
-
-    nav {
-      background-color: rgba(0, 0, 68, 0.9);
-      padding: 10px 0;
-      text-align: center;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      position: absolute;
-      top: 100%;
-      width: 100%;
-      left: 0;
-      display: none;
-      transition: all 0.3s ease;
-    }
-
-    nav a {
-      color: #00BFFF;
-      text-decoration: none;
-      margin: 0 15px;
-      font-size: 1.1rem;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    /* عند التفاعل مع الهامبورجر */
-    .hamburger.open + nav {
-      display: flex;
+    header img {
+      width: 60px;
+      height: auto;
     }
 
     .hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
       text-align: center;
-      padding: 50px 20px;
-      background-color: #001144;
     }
 
-    .hero h2 {
-      font-size: 2.5rem;
-      color: #FFFFFF;
+    .hero h1 {
+      font-size: 3rem;
+      margin: 0;
+      color: #00BFFF;
     }
 
     .hero p {
       font-size: 1.2rem;
-      margin-top: 10px;
+      margin: 10px 0;
       color: #AAAAFF;
     }
 
-    .container {
-      max-width: 1200px;
-      margin: 20px auto;
-      padding: 20px;
-    }
-
-    .developer-box {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-
-    .developer {
-      background-color: #001144;
+    .hero button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 1rem;
       color: white;
-      padding: 20px;
-      border-radius: 10px;
-      text-align: center;
-      width: calc(33% - 20px);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      background-color: #00BFFF;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
-    .developer img {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      margin-bottom: 10px;
+    .hero button:hover {
+      background-color: #0077AA;
     }
 
     footer {
@@ -166,6 +107,9 @@
       text-align: center;
       color: white;
       font-size: 0.9rem;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
     }
 
     footer a {
@@ -179,36 +123,20 @@
   </style>
 </head>
 <body>
+  <!-- تأثير الشهب -->
   <div class="stars">
-    <!-- سيتم ملء النجوم بشكل عشوائي -->
+    <!-- يتم توليد الشهب باستخدام JavaScript -->
   </div>
 
   <header>
-    <h1>Dream Bot</h1>
-    <!-- أيقونة الهامبورجر -->
-    <div class="hamburger" onclick="toggleMenu()">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-    <nav>
-      <a href="#">الرئيسية</a>
-      <a href="#features">المميزات</a>
-      <a href="#developers">المنشئون</a>
-      <a href="#contact">تواصل معنا</a>
-    </nav>
+    <img src="https://cdn.discordapp.com/attachments/1239892841342308412/1322887961448153098/60897D2F-62F2-48AC-A950-5A7FCC303F93.png" alt="Dream Bot Logo">
   </header>
 
   <div class="hero">
-    <h2>ارتقِ بإدارة خادمك مع Dream Bot</h2>
-    <p>ميزات مذهلة وخدمات مميزة تجعل إدارة الخادم أسهل من أي وقت مضى.</p>
-  </div>
-
-  <div class="container" id="developers">
-    <h2 style="text-align: center; color: #00BFFF;">المنشئون</h2>
-    <div class="developer-box" id="developer-list">
-      <!-- سيتم ملء البيانات من Discord API -->
-    </div>
+    <h1>Dream Bot</h1>
+    <p>أفضل بوت لإدارة الخوادم.</p>
+    <button onclick="location.href='rules.html';">القواعد</button>
+    <button onclick="location.href='https://discord.com/api/oauth2/authorize?client_id=YOUR_CLIENT_ID&permissions=8&scope=bot';">إضافة البوت</button>
   </div>
 
   <footer>
@@ -216,44 +144,27 @@
   </footer>
 
   <script>
-    const developerIds = ["745205211697774665", "829263795364036608"]; // معرفات المطورين من Discord
-    const token = "MTIyNTk1MjUyNDU3MDMzMzI5NQ.G3aTaJ.7eI0PFIh5bEI4X5bvv9SlhDUjrcBCwE28sIz7Q"; // توكن البوت الخاص بك
+    // توليد الشهب
+    const starsContainer = document.querySelector('.stars');
+    const generateStars = () => {
+      for (let i = 0; i < 20; i++) {
+        const star = document.createElement('span');
+        star.style.setProperty('--y', Math.random());
+        star.style.left = Math.random() * 100 + 'vw';
+        star.style.top = Math.random() * 100 + 'vh';
+        star.style.animationDuration = Math.random() * 2 + 3 + 's';
+        starsContainer.appendChild(star);
 
-    async function fetchDeveloperData(userId) {
-      const response = await fetch(`https://discord.com/api/v10/users/${userId}`, {
-        headers: {
-          Authorization: `Bot ${token}`
-        }
-      });
-      if (!response.ok) {
-        console.error(`فشل جلب البيانات للمطور ID: ${userId}`);
-        return null;
+        // إزالة النجمة بعد انتهاء الأنيميشن
+        star.addEventListener('animationend', () => {
+          star.remove();
+        });
       }
-      return response.json();
-    }
+    };
 
-    async function loadDevelopers() {
-      const developerList = document.getElementById("developer-list");
-      for (const id of developerIds) {
-        const data = await fetchDeveloperData(id);
-        if (data) {
-          const devBox = document.createElement("div");
-          devBox.className = "developer";
-          devBox.innerHTML = `
-            <img src="https://cdn.discordapp.com/avatars/${data.id}/${data.avatar}.png" alt="${data.username}">
-            <h3>${data.username}</h3>
-          `;
-          developerList.appendChild(devBox);
-        }
-      }
-    }
-
-    function toggleMenu() {
-      const hamburger = document.querySelector('.hamburger');
-      hamburger.classList.toggle('open');
-    }
-
-    loadDevelopers();
+    // توليد الشهب بشكل متكرر
+    setInterval(generateStars, 2000);
+    generateStars();
   </script>
 </body>
 </html>
