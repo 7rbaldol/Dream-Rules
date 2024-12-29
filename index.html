@@ -3,19 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="مرحبًا بك في Dream Bot - تجربة رائعة لإدارة الخوادم.">
+  <meta name="description" content="Dream Bot - أفضل بوت لإدارة الخوادم بطريقة احترافية ومميزة. جربه الآن للحصول على تجربة فريدة.">
+  <meta name="keywords" content="Discord Bot, Dream Bot, إدارة الخوادم, بوت ديسكورد, بوت إدارة">
+  <meta name="author" content="Dream Bot Team">
   <meta property="og:title" content="Dream Bot">
   <meta property="og:description" content="تحكم كامل وإدارة مميزة لخادمك باستخدام Dream Bot.">
-  <meta property="og:image" content="https://cdn.discordapp.com/attachments/1239892841342308412/1322957757921493074/60897D2F-62F2-48AC-A950-5A7FCC303F93.png?ex=6772c3ec&is=6771726c&hm=69ac3ee3ba8dd560d2e054ae1bca64a46217df0b84354c366ac7b2ae6ef30646&">
+  <meta property="og:image" content="https://cdn.discordapp.com/attachments/1239892841342308412/1322887961448153098/60897D2F-62F2-48AC-A950-5A7FCC303F93.png">
   <meta property="og:url" content="https://dream-bot.online">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ar_AR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Dream Bot">
+  <meta name="twitter:description" content="أفضل بوت لإدارة الخوادم بطريقة احترافية ومميزة.">
+  <meta name="twitter:image" content="https://cdn.discordapp.com/attachments/1239892841342308412/1322887961448153098/60897D2F-62F2-48AC-A950-5A7FCC303F93.png">
   <title>Dream Bot</title>
   <style>
     body {
       margin: 0;
       font-family: 'Arial', sans-serif;
+      background-color: #001144;
       color: white;
-      overflow-x: hidden;
-      background:#200675;
+      overflow: hidden;
     }
 
     /* تأثير الشهب */
@@ -23,149 +31,186 @@
       position: fixed;
       width: 100%;
       height: 100%;
-      background: transparent;
-      overflow: hidden;
       z-index: -1;
+      background: radial-gradient(circle, #002b5f 0%, #001144 100%);
+      overflow: hidden;
     }
 
-    .stars span {
+    .shooting-star {
       position: absolute;
-      width: 3px;
-      height: 3px;
-      background: white;
-      border-radius: 50%;
-      box-shadow: 0 0 10px white;
-      opacity: 0.8;
-      animation: shoot 3s linear infinite;
+      width: 2px;
+      height: 80px;
+      background: linear-gradient(to bottom, white, transparent);
+      animation: shoot 3s infinite ease-in-out;
     }
 
     @keyframes shoot {
       0% {
-        transform: translateX(100vw) translateY(calc(100vh * var(--y)));
+        transform: translateX(100vw) translateY(0vh);
+        opacity: 0;
+      }
+      50% {
         opacity: 1;
       }
-      80% {
-        opacity: 0.5;
-      }
       100% {
-        transform: translateX(-10vw) translateY(calc(100vh * var(--y)));
+        transform: translateX(-10vw) translateY(100vh);
         opacity: 0;
       }
     }
 
     header {
+      background: linear-gradient(90deg, #002b5f, #004080);
+      padding: 15px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 20px;
+      border-bottom: 2px solid #00BFFF;
     }
 
     header img {
-      width: 60px;
-      height: auto;
+      height: 60px;
+      border-radius: 50%;
+    }
+
+    header h1 {
+      margin: 0 auto;
+      color: #00BFFF;
+      font-size: 2rem;
+    }
+
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 25px;
+      cursor: pointer;
+    }
+
+    .hamburger div {
+      background-color: #00BFFF;
+      height: 4px;
+      width: 100%;
+      border-radius: 2px;
+    }
+
+    nav {
+      position: absolute;
+      top: 70px;
+      right: 10px;
+      background: #002b5f;
+      padding: 10px;
+      border-radius: 8px;
+      display: none;
+      flex-direction: column;
+      align-items: flex-start;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #00BFFF;
+      margin: 5px 0;
+      padding: 5px 10px;
+      border-radius: 5px;
+      transition: background-color 0.2s;
+    }
+
+    nav a:hover {
+      background-color: #00BFFF;
+      color: #001144;
     }
 
     .hero {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
       text-align: center;
+      margin: 100px auto;
     }
 
-    .hero h1 {
+    .hero h2 {
       font-size: 3rem;
-      margin: 0;
       color: #00BFFF;
     }
 
-    .hero p {
-      font-size: 1.2rem;
-      margin: 10px 0;
-      color: #AAAAFF;
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
     }
 
-    .hero button {
-      margin: 10px;
-      padding: 10px 20px;
-      font-size: 1rem;
+    .buttons a {
+      text-decoration: none;
       color: white;
-      background-color: #00BFFF;
-      border: none;
+      background-color: #004080;
+      padding: 10px 20px;
       border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
+      font-size: 1.2rem;
+      transition: background-color 0.2s;
     }
 
-    .hero button:hover {
-      background-color: #0077AA;
+    .buttons a:hover {
+      background-color: #0066cc;
     }
 
     footer {
-      background-color: rgba(0, 0, 68, 0.9);
+      background-color: #002b5f;
+      color: white;
       padding: 10px;
       text-align: center;
-      color: white;
-      font-size: 0.9rem;
       position: fixed;
       bottom: 0;
       width: 100%;
     }
-
-    footer a {
-      color: #00BFFF;
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
   </style>
 </head>
 <body>
-  <!-- تأثير الشهب -->
-  <div class="stars">
-    <!-- يتم توليد الشهب باستخدام JavaScript -->
-  </div>
+  <div class="stars" id="stars"></div>
 
   <header>
-    <img src="https://cdn.discordapp.com/attachments/1239892841342308412/1322957757921493074/60897D2F-62F2-48AC-A950-5A7FCC303F93.png?ex=6772c3ec&is=6771726c&hm=69ac3ee3ba8dd560d2e054ae1bca64a46217df0b84354c366ac7b2ae6ef30646&" alt="Dream Bot Logo">
+    <img src="https://cdn.discordapp.com/avatars/123456789012345678/abcdef.png" alt="Dream Bot">
+    <h1>Dream Bot</h1>
+    <div class="hamburger" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <nav id="menu">
+      <a href="#">الرئيسية</a>
+      <a href="#">المميزات</a>
+      <a href="#">تواصل معنا</a>
+    </nav>
   </header>
 
   <div class="hero">
-    <h1>Dream Bot</h1>
-    <p>أفضل بوت لإدارة الخوادم.</p>
-    <button onclick="location.href='/';">القواعد</button>
-    <button onclick="location.href='https://discord.com/oauth2/authorize?client_id=1220335763724697713&permissions=277495540928&integration_type=0&scope=bot+applications.commands';">إضافة البوت</button>
+    <h2>مرحبًا بك في Dream Bot</h2>
+    <div class="buttons">
+      <a href="#">القواعد</a>
+      <a href="#">إضافة البوت</a>
+    </div>
   </div>
 
   <footer>
-    <p>© 2024 Dream Bot | جميع الحقوق محفوظة. <a href="https://example.com">تعرف علينا</a></p>
+    <p>© 2024 Dream Bot | جميع الحقوق محفوظة.</p>
   </footer>
 
   <script>
     // توليد الشهب
-    const starsContainer = document.querySelector('.stars');
-    const generateStars = () => {
-      for (let i = 0; i < 20; i++) {
-        const star = document.createElement('span');
-        star.style.setProperty('--y', Math.random());
-        star.style.left = Math.random() * 100 + 'vw';
-        star.style.top = Math.random() * 100 + 'vh';
-        star.style.animationDuration = Math.random() * 2 + 3 + 's';
-        starsContainer.appendChild(star);
+    function createStar() {
+      const star = document.createElement("div");
+      star.className = "shooting-star";
+      star.style.top = `${Math.random() * window.innerHeight}px`;
+      star.style.left = `${Math.random() * window.innerWidth}px`;
+      document.getElementById("stars").appendChild(star);
+      setTimeout(() => star.remove(), 3000);
+    }
 
-        // إزالة النجمة بعد انتهاء الأنيميشن
-        star.addEventListener('animationend', () => {
-          star.remove();
-        });
-      }
-    };
+    setInterval(createStar, 500);
 
-    // توليد الشهب بشكل متكرر
-    setInterval(generateStars, 2000);
-    generateStars();
+    // تفعيل قائمة الهامبورجر
+    function toggleMenu() {
+      const menu = document.getElementById("menu");
+      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+    }
   </script>
 </body>
 </html>
