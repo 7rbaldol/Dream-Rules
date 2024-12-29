@@ -6,7 +6,7 @@
   <meta name="description" content="مرحبًا بك في Dream Bot - تجربة رائعة لإدارة الخوادم.">
   <meta property="og:title" content="Dream Bot">
   <meta property="og:description" content="تحكم كامل وإدارة مميزة لخادمك باستخدام Dream Bot.">
-  <meta property="og:image" content="https://cdn.discordapp.com/attachments/1239892841342308412/1322887961448153098/60897D2F-62F2-48AC-A950-5A7FCC303F93.png?ex=677282ec&is=6771316c&hm=fb5c55013776aa2f60f34a55902750bfb0b89e42c97e0f6082ac2393be04e6a7&"> <!-- رابط الصورة المصغرة -->
+  <meta property="og:image" content="https://cdn.discordapp.com/attachments/1239892841342308412/1322887961448153098/60897D2F-62F2-48AC-A950-5A7FCC303F93.png">
   <meta property="og:url" content="https://dream-bot.online">
   <title>Dream Bot</title>
   <style>
@@ -15,12 +15,48 @@
       font-family: 'Arial', sans-serif;
       background-color: #000033;
       color: white;
+      overflow-x: hidden;
     }
 
+    /* تأثير النجوم */
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: #000033;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .stars span {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      opacity: 0.8;
+      animation: moveStars 10s linear infinite;
+    }
+
+    @keyframes moveStars {
+      from {
+        transform: translateY(-100vh);
+      }
+      to {
+        transform: translateY(100vh);
+      }
+    }
+
+    .stars span:nth-child(1) { left: 10%; animation-duration: 12s; }
+    .stars span:nth-child(2) { left: 30%; animation-duration: 10s; }
+    .stars span:nth-child(3) { left: 50%; animation-duration: 8s; }
+    .stars span:nth-child(4) { left: 70%; animation-duration: 15s; }
+    .stars span:nth-child(5) { left: 90%; animation-duration: 7s; }
+
     header {
-      background-color: #001144;
+      background-color: rgba(0, 17, 68, 0.9);
       padding: 20px;
       text-align: center;
+      border-bottom: 2px solid #00BFFF;
     }
 
     header h1 {
@@ -36,7 +72,7 @@
     }
 
     nav {
-      background-color: #000044;
+      background-color: rgba(0, 0, 68, 0.9);
       padding: 10px 0;
       text-align: center;
     }
@@ -75,30 +111,32 @@
       padding: 20px;
     }
 
-    .features {
+    .developer-box {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
       gap: 20px;
+      justify-content: center;
     }
 
-    .feature-box {
+    .developer {
       background-color: #001144;
       color: white;
       padding: 20px;
       border-radius: 10px;
-      flex: 1 1 calc(33.333% - 20px);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
       text-align: center;
+      width: calc(33% - 20px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     }
 
-    .feature-box h3 {
-      color: #00BFFF;
-      font-size: 1.5rem;
+    .developer img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 10px;
     }
 
     footer {
-      background-color: #000044;
+      background-color: rgba(0, 0, 68, 0.9);
       padding: 10px;
       text-align: center;
       color: white;
@@ -116,6 +154,14 @@
   </style>
 </head>
 <body>
+  <div class="stars">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
   <header>
     <h1>Dream Bot</h1>
     <p>مرحبًا بك في تجربة فريدة لإدارة الخوادم!</p>
@@ -123,34 +169,57 @@
   <nav>
     <a href="#">الرئيسية</a>
     <a href="#features">المميزات</a>
-    <a href="#rules">القواعد</a>
+    <a href="#developers">المنشئون</a>
     <a href="#contact">تواصل معنا</a>
   </nav>
   <div class="hero">
     <h2>ارتقِ بإدارة خادمك مع Dream Bot</h2>
     <p>ميزات مذهلة وخدمات مميزة تجعل إدارة الخادم أسهل من أي وقت مضى.</p>
   </div>
-  <div class="container">
-    <section id="features">
-      <h2 style="text-align: center; color: #00BFFF;">المميزات</h2>
-      <div class="features">
-        <div class="feature-box">
-          <h3>إدارة متقدمة</h3>
-          <p>قم بإدارة القنوات، الأدوار، والأعضاء بسهولة وفعالية.</p>
-        </div>
-        <div class="feature-box">
-          <h3>حماية قوية</h3>
-          <p>نظام حماية مدمج يحافظ على خادمك من الهجمات.</p>
-        </div>
-        <div class="feature-box">
-          <h3>إشعارات فورية</h3>
-          <p>احصل على إشعارات مباشرة بكل التحديثات والأنشطة.</p>
-        </div>
-      </div>
-    </section>
+  <div class="container" id="developers">
+    <h2 style="text-align: center; color: #00BFFF;">المنشئون</h2>
+    <div class="developer-box" id="developer-list">
+      <!-- سيتم ملء البيانات من Discord API -->
+    </div>
   </div>
   <footer>
     <p>© 2024 Dream Bot | جميع الحقوق محفوظة. <a href="https://example.com">تعرف علينا</a></p>
   </footer>
+
+  <script>
+    const developerIds = ["745205211697774665", "829263795364036608"]; // ضع معرفات Discord هنا
+    const token = "MTIyNTk1MjUyNDU3MDMzMzI5NQ.G3aTaJ.7eI0PFIh5bEI4X5bvv9SlhDUjrcBCwE28sIz7Q"; // ضع توكن البوت هنا
+
+    async function fetchDeveloperData(userId) {
+      const response = await fetch(`https://discord.com/api/v10/users/${userId}`, {
+        headers: {
+          Authorization: `Bot ${token}`
+        }
+      });
+      if (!response.ok) {
+        console.error(`Failed to fetch data for user ID: ${userId}`);
+        return null;
+      }
+      return response.json();
+    }
+
+    async function loadDevelopers() {
+      const developerList = document.getElementById("developer-list");
+      for (const id of developerIds) {
+        const data = await fetchDeveloperData(id);
+        if (data) {
+          const devBox = document.createElement("div");
+          devBox.className = "developer";
+          devBox.innerHTML = `
+            <img src="https://cdn.discordapp.com/avatars/${data.id}/${data.avatar}.png" alt="${data.username}">
+            <h3>${data.username}</h3>
+          `;
+          developerList.appendChild(devBox);
+        }
+      }
+    }
+
+    loadDevelopers();
+  </script>
 </body>
 </html>
