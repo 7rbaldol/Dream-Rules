@@ -47,15 +47,6 @@
       }
     }
 
-    .stars {
-      --star-count: 300;
-    }
-
-    .stars span:nth-child(n) {
-      --i: calc(var(--star-count) * random());
-      left: calc(100% * random());
-    }
-
     header {
       background-color: rgba(0, 17, 68, 0.9);
       padding: 15px;
@@ -72,6 +63,23 @@
       color: #00BFFF;
       margin: 0;
       font-size: 3rem;
+    }
+
+    /* قائمة الهامبورجر */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 25px;
+      cursor: pointer;
+    }
+
+    .hamburger div {
+      background-color: #00BFFF;
+      height: 5px;
+      width: 100%;
+      border-radius: 5px;
     }
 
     nav {
@@ -100,7 +108,8 @@
       text-decoration: underline;
     }
 
-    header:hover nav {
+    /* عند التفاعل مع الهامبورجر */
+    .hamburger.open + nav {
       display: flex;
     }
 
@@ -176,6 +185,12 @@
 
   <header>
     <h1>Dream Bot</h1>
+    <!-- أيقونة الهامبورجر -->
+    <div class="hamburger" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
     <nav>
       <a href="#">الرئيسية</a>
       <a href="#features">المميزات</a>
@@ -233,7 +248,12 @@
       }
     }
 
+    function toggleMenu() {
+      const hamburger = document.querySelector('.hamburger');
+      hamburger.classList.toggle('open');
+    }
+
     loadDevelopers();
   </script>
 </body>
-</html
+</html>
