@@ -153,5 +153,7 @@ footer {
   nav {
     display: none;
     flex-direction: column;
+    width:90%;
+    
   }
 }
