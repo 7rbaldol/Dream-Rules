@@ -33,9 +33,10 @@ height: 5vh;
 }
 
 .hidden {
-opacity: 0;
-z-index:0;
-transition: opacity 1s ease-out;
+  opacity: 0;
+  z-index: -1; /* تغيير z-index لإبعاد العنصر عن التفاعل */
+  pointer-events: none; /* منع التفاعل مع العنصر المخفي */
+  transition: opacity 1s ease-out;
 }
 
 header {
