@@ -27,9 +27,33 @@ body {
     height: 100%;
     z-index: -11;
   }
-.Lodding {
-width: 50vw;
-height: 5vh;
+#Lodding {
+  width: 80%; /* عرض الشريط */
+  height: 20px; /* ارتفاع الشريط */
+  appearance: none; /* إزالة المظهر الافتراضي */
+  border-radius: 10px; /* جعل الحواف منحنية */
+  background-color: #f3f3f3; /* خلفية الشريط */
+  border: 2px solid #00BFFF; /* إضافة حد خفيف */
+  overflow: hidden; /* منع العناصر التي تتجاوز الحواف */
+}
+
+/* تخصيص شريط التقدم (الحالة الفعالة) */
+#Lodding::-webkit-progress-bar {
+  background-color: #f3f3f3;
+  border-radius: 10px;
+}
+
+#Lodding::-webkit-progress-value {
+  background: linear-gradient(90deg, #00BFFF, #0066cc); /* تدرج لوني */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* إضافة تأثير الظل */
+}
+
+/* تخصيص شريط التقدم (الحالة الفعالة) في المتصفحات الأخرى */
+#Lodding::-moz-progress-bar {
+  background: linear-gradient(90deg, #00BFFF, #0066cc);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .hidden {
