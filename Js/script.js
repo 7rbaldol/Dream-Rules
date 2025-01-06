@@ -16,6 +16,7 @@ window.onload = () => {
     }, 30);
     };
     // منع F12 و Ctrl+Shift+I
+/*
     document.addEventListener("keydown", function (e) {
       if ((e.key === "F12") || (e.ctrlKey && e.shiftKey && e.key === "I")) {
         e.preventDefault(); // منع تنفيذ الاختصار
@@ -27,7 +28,7 @@ window.onload = () => {
     document.addEventListener("contextmenu", function (e) {
       e.preventDefault(); // منع القائمة السياقية
       alert("القائمة السياقية تم تعطيلها.");
-    });
+    });*/
     function toggleMenu() {
         const menu = document.getElementById('menu');
         menu.classList.toggle('open');
