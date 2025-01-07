@@ -12,7 +12,21 @@
     </div>
   </footer>
   `
-document.getElementById('header').innerHTML = 
+document.getElementById('header').innerHTML = `<header>
+<div class="logo-container">
+<img src="../Css/img/logo.png" alt="Dream Bot" class="logo" />
+
+</div>
+<div class="hamburger" onclick="toggleMenu()">
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+</div>
+<nav id="menu">
+<a href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
+
+</nav>
+</header>`
 /*fetch('https://bot.dream-bot.online/pages/include/header.html')
     .then(res => res.text())
     .then(data => {
