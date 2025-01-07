@@ -16,6 +16,6 @@ document.getElementById('header').innerHTML = `<header>
     <div class="bar"></div>
   </div>
   <nav id="menu">
-    <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
+    <a href="/"><i class="fas fa-home"></i> الرئيسية</a>
   </nav>
 </header>`;
