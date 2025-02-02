@@ -33,3 +33,26 @@ window.onload = () => {
         const menu = document.getElementById('menu');
         menu.classList.toggle('open');
       }
+document.addEventListener("DOMContentLoaded", function () {
+            axios.get('http://37.60.246.173:2602/api/Owners')  // 🔹 استبدل بعنوان السيرفر الخاص بك
+                .then(response => {
+                    const ownersContainer = document.getElementById("owners-container");
+                    const owners = response.data.data;  // تأكد أن بيانات المالكين في `data`
+
+                    owners.forEach(owner => {
+                        const ownerCard = document.createElement("div");
+                        ownerCard.classList.add("owner-card");
+
+                        ownerCard.innerHTML = `
+                            <img src="${owner.avatar}" alt="${owner.username}" class="owner-avatar">
+                            <h3>${owner.username}</h3>
+                            <p>ID: ${owner.id}</p>
+                        `;
+
+                        ownersContainer.appendChild(ownerCard);
+                    });
+                })
+                .catch(error => {
+                    console.error('❌ Error fetching owners:', error);
+                });
+        })
