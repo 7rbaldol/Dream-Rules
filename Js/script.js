@@ -33,7 +33,7 @@ window.onload = () => {
         const menu = document.getElementById('menu');
         menu.classList.toggle('open');
       }
-document.addEventListener("DOMContentLoaded", function () {
+
             axios.get('http://37.60.246.173:2602/api/Owners')  // 🔹 استبدل بعنوان السيرفر الخاص بك
                 .then(response => {
                     const ownersContainer = document.getElementById("owners-container");
@@ -55,4 +55,4 @@ document.addEventListener("DOMContentLoaded", function () {
                 .catch(error => {
                     console.error('❌ Error fetching owners:', error);
                 });
-        })
+        
